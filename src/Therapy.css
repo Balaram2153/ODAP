@@ -15,9 +15,10 @@ table{
     flex : wrap;
     color: white;
 }
-.Therapy-slot-container input{
-    background-color: white;
+.Therapy-slot-container input,select{
+    background-color: rgb(18, 17, 17);
 }
+
 .therapy-btn{
     text-align: center;
     margin-left: 200px;

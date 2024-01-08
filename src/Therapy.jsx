@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import './Therapy.css';
 import LandNav from "./Landpage/LandNav.jsx";
 import FooterPage from "./Landpage/FooterPage.jsx";
-import Payment from "./Landpage/Payment.jsx";
-
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -58,19 +56,19 @@ import { useNavigate } from "react-router-dom";
         throw new Error("Doctor name sholud not contain numbers")
       if(referaldoctorname.length<5)
         throw new Error("Doctor name should have more than 5 chars")
-      if(bookingdate == "")
+      if(bookingdate === "")
         throw new Error("Select a booking date")
-      if(typeofservices == "")
+      if(typeofservices === "")
         throw new Error("Select a service")
-      if(hospitalname == "")
+      if(hospitalname === "")
         throw new Error("Select a hospital")
-      if(slottime == "")
+      if(slottime === "")
         throw new Error("Select a slot")
-      if(procedures == "")
+      if(procedures === "")
         throw new Error("Select a procedure")
       if(emaildigit.test(email) || !email.endsWith(emailend))
         throw new Error("Enter a valid email address")
-      if(alphabets.test(mobilenumber) || mobilenumber.length !=10 || !startswith.test(mobilenumber))
+      if(alphabets.test(mobilenumber) || mobilenumber.length !==10 || !startswith.test(mobilenumber))
         throw new Error("Mobilenumber should not contain alphabets and must contain 10 numbers")
 
       const response = await axios.post('http://localhost:9082/api/Msdata' ,Data);
@@ -135,7 +133,7 @@ import { useNavigate } from "react-router-dom";
             <tr>
             <td>Hospitalname:</td>
             <td><select id='hospitalname' class="form-select form-select-sm" value={hospitalname} onChange={(e)=>setHospitalName(e.target.value)} aria-label=".form-select-sm example" >
-                <option selected>name</option>
+                <option></option>
                 <option>Apollo</option>
                 <option>Care</option>
                 <option>Yashoda</option>             
@@ -145,7 +143,7 @@ import { useNavigate } from "react-router-dom";
             <tr>
             <td>slot :</td>
             <td>  <select id='slot' class="form-select form-select-sm" value={slottime} onChange={(e)=>setSlottime(e.target.value)} aria-label=".form-select-sm example" >
-                <option selected>slot </option>
+                <option></option>
                 <option>10:00am </option>
                 <option>11:00am</option>
                 <option>12:00pm</option>
@@ -156,30 +154,39 @@ import { useNavigate } from "react-router-dom";
             <tr>
             <td>procedures :</td>
             <td><select id='procedures' class="form-select form-select-sm" value={procedures} onChange={(e)=>setProcedures(e.target.value)} aria-label=".form-select-sm example" >
-                <option selected>procedures</option>
+                <option ></option>
                 <option>side 1</option>
                 <option>side 2</option>
                 <option>side 3</option>
                 <option>side 4</option>               
             </select></td>
             </tr>
+            <tr>
+              <td>Payment mode:</td>
+              <td><select id="Paymentmode" className="form-select form-select-sm">
+                  <option></option>
+                  <option>Cash</option>
+                  <option>Online</option>
+                  <option>Insurance</option>
+                </select></td>
+            </tr>
          
             <tr>
             <td>Amount :</td>
-            <td>            <input type='text' className="form-control" id='inputMedicalInformation' value={amount} onChange={(e)=>setAmount(e.target.value)} placeholder='enter medical information'/>
+            <td><input type='text' className="form-control" id='inputMedicalInformation' value={amount} onChange={(e)=>setAmount(e.target.value)} placeholder='enter medical information'/>
 </td>
             </tr>
        
             <tr>
             <td>Email :</td>
-            <td>            <input type='email' name='email' className="form-control" id='inputEmail' value={email} onChange={(e)=>setEmail(e.target.value)}
+            <td><input type='email' name='email' className="form-control" id='inputEmail' value={email} onChange={(e)=>setEmail(e.target.value)}
             placeholder='enter your email'/>
 </td>
           </tr>
          
             <tr>
             <td>Mobile :</td>
-            <td>            <input type='tel' className="form-control" id='inputMobile'value={mobilenumber} onChange={(e)=>setMobileNumber(e.target.value)} placeholder='enter mobile number' required/>
+            <td><input type='tel' className="form-control" id='inputMobile'value={mobilenumber} onChange={(e)=>setMobileNumber(e.target.value)} placeholder='enter mobile number' required/>
 </td>
             </tr>
         

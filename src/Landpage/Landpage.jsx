@@ -13,7 +13,7 @@ export default function Landpage() {
           <img className="bannerimage" src="https://source.unsplash.com/1600x1000/?treatment "></img>
           <div className="banner-text">
             <p>The best medical services</p>
-            <p>We have most dedicated team to maintain ypur health.</p>
+            <p>We have most dedicated team to maintain your health.</p>
           </div>         
         </div>
       
