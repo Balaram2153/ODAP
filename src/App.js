@@ -7,6 +7,7 @@ import Login from './Landpage/Login';
 import Register from './Landpage/Register';
 import Doctorregistration from './Doctorregistation';
 import Payment from './Landpage/Payment';
+import Technician from './Technician';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/Doctorregistration' element={<Doctorregistration/>}/>
         <Route path='/FooterPage' element={<FooterPage/>}/>
         <Route path='/LandNav' element={<LandNav/>}/>
+        <Route path='/Technician' element={<Technician/>}></Route>
         <Route path='/Therapy/Payment' element={<Payment/>}/>
       </Routes>
     </BrowserRouter>

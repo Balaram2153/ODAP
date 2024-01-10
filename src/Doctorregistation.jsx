@@ -3,58 +3,58 @@ import './Doctorregistration.css'
 import LandNav from "./Landpage/LandNav";
 import FooterPage from "./Landpage/FooterPage";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default function Doctorregistration(){
   
-  const[Doctorname, setDoctorname] = useState('');
-  const[Speciality, setSpeciality] = useState('');
-  const[Experience, setExperience] = useState('');
-  const[Dateofmedicallicense, setDateofmedicallicense] = useState('');
-  const[Countryoflicense, setCountryoflicense] = useState('');
-  const[Licensenumber, setLicensenumber] = useState('');
-  const[Currentworkplace, setCurrentworkplace] = useState('');
-  const[Phonenumber, setPhonenumber] = useState('');
-  const[Email, setEmail] = useState('');
-  const[Password, setPassword] = useState('');
-  const[Confirmpassword, setConfirmpassword] = useState('');
-  const[ErrorMessage, setErrorMessage] = useState('');
-  const[Error, setError] = useState('');
-  const navigate = useNavigate('');
+  const[doctorFirstname, setDoctorFirstname] = useState('');
+  const[doctorLastname, setDoctorLastname] = useState('');
+  const[speciality, setSpeciality] = useState('');
+  const[experience, setExperience] = useState('');
+  const[dateofLicenseobtained, setDateofLicenseobtained] = useState('');
+  const[countryofLicenseobtained, setCountryofLicenseobtained] = useState('');
+  const[licensenumber, setLicensenumber] = useState('');
+  const[currentWorkplace, setCurrentWorkplace] = useState('');
+  const[phonenumber, setPhonenumber] = useState('');
+  const[email, setEmail] = useState('');
+  const[password, setPassword] = useState('');
+  const[confirmPassword, setConfirmPassword] = useState('');
   
   const submit = async()=>{
     
     const data = {
-      Doctorname,
-      Speciality,
-      Experience,
-      Dateofmedicallicense,
-      Countryoflicense,
-      Licensenumber,
-      Currentworkplace,
-      Phonenumber,
-      Email,
-      Password,
-      Confirmpassword
+      doctorFirstname,
+      doctorLastname,
+      speciality,
+      experience, 
+      dateofLicenseobtained,
+      countryofLicenseobtained,
+      licensenumber,
+      currentWorkplace,
+      phonenumber,
+      email,
+      password,
+      confirmPassword,
     };
     try{
-      const response =await axios.post("'http://localhost:9082/api/Msdata' ,data")
-      setDoctorname('');
+      const response = axios.post('http://localhost:9082/api/DRData' ,data)
+      setDoctorFirstname('');
+      setDoctorLastname('');
       setSpeciality('');
       setExperience('');
-      setDateofmedicallicense('');
-      setCountryoflicense('');
+      setDateofLicenseobtained('');
+      setCountryofLicenseobtained('');
       setLicensenumber('');
-      setCurrentworkplace('');
+      setCurrentWorkplace('');
       setPhonenumber('');
       setEmail('');
       setPassword('');
-      setConfirmpassword('');
+      setConfirmPassword('');
       alert("Doctor registration successful");
+      console.log(response);
       
     }
     catch(error){
-      
+      console.log("error occured",error);
     }
     
   }
@@ -70,51 +70,55 @@ export default function Doctorregistration(){
         <div>
         <table className="Doctable">
           <tr>
-            <td>Doctor Name :</td>
-            <td><input type="text" id="Doctorname" value={Doctorname} onChange={(e)=>setDoctorname(e.target.value)}></input></td>
+            <td>Doctor First Name :</td>
+            <td><input type="text" id="Doctorfirstname" value={doctorFirstname} onChange={(e)=>setDoctorFirstname(e.target.value)}></input></td>
+          </tr>
+          <tr>
+            <td>Doctor Last Name :</td>
+            <td><input type="text" id="Doctorlastname" value={doctorLastname} onChange={(e)=>setDoctorLastname(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Speciality :</td>
-            <td><input type="text" id="Speciality" value={Speciality} onChange={(e)=>setSpeciality(e.target.value)}></input></td>
+            <td><input type="text" id="Speciality" value={speciality} onChange={(e)=>setSpeciality(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Experience :</td>
-            <td><input type="number" placeholder="In years" id="Experience" value={Experience} onChange={(e)=>setExperience(e.target.value)}></input></td>
+            <td><input type="number" placeholder="In years" id="Experience" value={experience} onChange={(e)=>setExperience(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Date of obtaining medical license :</td>
-            <td><input type="date" id="Dateofmedicallicense" value={Dateofmedicallicense} onChange={(e)=>setDateofmedicallicense(e.target.value)}></input></td>
+            <td><input type="date" id="DateofLicenseobtained" value={dateofLicenseobtained} onChange={(e)=>setDateofLicenseobtained(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Country of license issued :</td>
-            <td><input type="text" id="Countryoflicense" value={Countryoflicense} onChange={(e)=>setCountryoflicense(e.target.value)}></input></td>
+            <td><input type="text" id="CountryofLicenseobtained" value={countryofLicenseobtained} onChange={(e)=>setCountryofLicenseobtained(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>License number :</td>
-            <td><input type="number" id="Licensenumber" value={Licensenumber} onChange={(e)=>setLicensenumber(e.target.value)}></input></td>
+            <td><input type="number" id="Licensenumber" value={licensenumber} onChange={(e)=>setLicensenumber(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Current Workplace :</td>
-            <td><input type="text" id="Currentworkplace" value={Currentworkplace} onChange={(e)=>setCurrentworkplace(e.target.value)}></input></td>
+            <td><input type="text" id="CurrentWorkplace" value={currentWorkplace} onChange={(e)=>setCurrentWorkplace(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Phone number :</td>
-            <td><input type="number" id="Phonenumber" value={Phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}></input></td>
+            <td><input type="number" id="Phonenumber" value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Email address :</td>
-            <td><input type="email" id="Email" value={Email} onChange={(e)=>setEmail(e.target.value)}></input></td>
+            <td><input type="email" id="Email" value={email} onChange={(e)=>setEmail(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Create Password :</td>
-            <td><input type="text" id="Password" value={Password} onChange={(e)=>setPassword(e.target.value)}></input></td>
+            <td><input type="text" id="Password" value={password} onChange={(e)=>setPassword(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Confirm Password :</td>
-            <td><input type="text" id="Confirmpassword" value={Confirmpassword} onChange={(e)=>setConfirmpassword(e.target.value)}></input></td>
+            <td><input type="text" id="ConfirmPassword" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
           </tr>
         </table>
-        <buttun className="DRbtn">submit</buttun>
+        <buttun type='button' className="DRbtn" onClick={submit}>submit</buttun>
         </div>
       </div>
     <FooterPage></FooterPage>

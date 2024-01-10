@@ -88,6 +88,7 @@ function FooterPage() {
                         <p className='right'>https://anarghyacommunications.com</p>
                         <p className='right'>+91-040-67932204</p>
                         <p><Link to='/Doctorregistration'>Doctor Login</Link></p>
+                        <p><Link to='/Technician'>Technician Login</Link></p>
                 </div>
                 <div className='col-12 col-md-6 col-xl-4 footer-images'>                                   
                         <td><a href=""><img className="imgfc" src="https://www.aptemples.ap.gov.in/static/media/MDI%20-%20facebook.80d17278.svg" width="30px" height="30px" /></a></td>
