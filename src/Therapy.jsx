@@ -5,6 +5,7 @@ import FooterPage from "./Landpage/FooterPage.jsx";
 import axios from 'axios';
 import { Form, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
+import { setPatientslot } from "./AuthState.jsx";
 
 
 function OnlineService() {
@@ -22,6 +23,8 @@ function OnlineService() {
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate('');
+  
+  
 
 
   const submit = async () => {
@@ -171,27 +174,27 @@ function OnlineService() {
   //         console.log(error.text);
   //     });
   // };
-  const handleSendEmail = async() => {
-    try {
-      const response = await axios.post("http://localhost:9082/api/send-email", {
-        eamil : email,
-        patientname : patientname,
-        typeofservices : typeofservices,
-        bookingdate : bookingdate,
-        slottime : slottime,          
+  // const handleSendEmail = async() => {
+  //   try {
+  //     const response = await axios.post("http://localhost:9082/api/send-email", {
+  //       eamil : email,
+  //       patientname : patientname,
+  //       typeofservices : typeofservices,
+  //       bookingdate : bookingdate,
+  //       slottime : slottime,          
       
-      });
+  //     });
 
-      console.log(response.data); // Log the response if needed
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
+  //     console.log(response.data); // Log the response if needed
+  //   } catch (error) {
+  //     console.error("Error sending email:", error);
+  //   }
+  // };
 
   
   function onclick(){
     submit();
-    handleSendEmail();
+    // handleSendEmail();
     
   }
     

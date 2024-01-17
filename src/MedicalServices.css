@@ -1,8 +1,8 @@
 .card{
   border-radius: 13px;
   border: 2px solid grey;
-  width: 200px;
-  height: 300px;
+  width: 180px;
+  height: 280px;
   text-align: center;
 }
 .services-section{
@@ -63,3 +63,38 @@
 .card-bottom{
   padding: 10px;
 }
+.MDfirstcard{
+  margin: 25px;
+  border-radius: 6px;
+  background-image: linear-gradient(to right, rgb(87, 50, 219), purple);
+  height: 300px;
+  padding-top: 80px;
+  
+}
+.MDfirstcard-cont{
+  margin: 2px;
+  padding: 6px;
+  text-align: center;
+  color: white;
+}
+.MDfirstcard-img{
+  margin-left: 200px;
+}
+.Mdfirstcardbtn{
+  border-radius: 10px;
+  padding: 5px;
+  height: 50px;
+  width: 100px;
+}
+.articlecontent{
+  padding: 8px;
+  margin: 15px;
+  margin-top: 90px;
+}
+.articlecard{
+ margin-left: 8px;
+}
+.articleimg{
+  border-radius: 10px;
+}
+

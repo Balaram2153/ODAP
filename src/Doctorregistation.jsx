@@ -18,6 +18,8 @@ export default function Doctorregistration(){
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
   const[confirmPassword, setConfirmPassword] = useState('');
+  const[errorMessage, setErrorMessage] = useState('');
+  const[error,setError] = useState('');
   
   const submit = async()=>{
     
@@ -36,7 +38,36 @@ export default function Doctorregistration(){
       confirmPassword,
     };
     try{
-      const response = axios.post('http://localhost:9082/api/DRData' ,data)
+      setError(false);
+      const digits = /[0-9]/;
+      const emaildigit = /^[0-9]/;
+      const alphabets = /[a-z]/;
+      const specialchars = /[!@#$%^&*()_+|}{:"?><}]/;
+      const emailspecialchars = /[!#$%^&*()_+|}{":?><}]/;
+      const emailend = /[@gamil.com | @Yahoo.com]/;
+      
+      if(digits.test(doctorFirstname) || specialchars.test(doctorFirstname))
+        throw new Error("Enter valid Firstname");
+      if(digits.test(doctorLastname) || digits.test(doctorLastname))
+        throw new Error("Enter valid Lastname");
+      if(digits.test(speciality) || specialchars.test(speciality))
+        throw new Error("Enter valid Speciality");
+      if(experience.length >2)
+        throw new Error("Enter valid Experience");
+      if(digits.test(countryofLicenseobtained) || specialchars.test(countryofLicenseobtained))
+        throw new Error("Enter Valid Country");
+      if(alphabets.test(licensenumber) || specialchars.test(licensenumber))
+        throw new Error("Enter valid license number");
+      if(digits.test(currentWorkplace) || specialchars.test(currentWorkplace))
+        throw new Error("Enter valid Work place");
+      if(alphabets.test(phonenumber) || specialchars.test(phonenumber) || phonenumber.length !== 10)
+        throw new Error("Enter valid Phone number")
+      if(emaildigit.test(email) || emailspecialchars.test(email) || !email.endsWith(emailend))
+        throw new Error("Enter valid Email")
+      if(password != confirmPassword)
+        throw new Error("The Password and Confirmpassword should match")
+      
+      const response =await axios.post('http://localhost:9082/api/DRData' ,data)
       setDoctorFirstname('');
       setDoctorLastname('');
       setSpeciality('');
@@ -53,9 +84,10 @@ export default function Doctorregistration(){
       console.log(response);
       
     }
-    catch(error){
-      console.log("error occured",error);
-    }
+    catch(e){
+      setError(true);
+      setErrorMessage(e.message);
+      }
     
   }
   
@@ -71,54 +103,58 @@ export default function Doctorregistration(){
         <table className="Doctable">
           <tr>
             <td>Doctor First Name :</td>
-            <td><input type="text" id="Doctorfirstname" value={doctorFirstname} onChange={(e)=>setDoctorFirstname(e.target.value)}></input></td>
+            <td><input type="text" id="Doctorfirstname" required value={doctorFirstname} onChange={(e)=>setDoctorFirstname(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Doctor Last Name :</td>
-            <td><input type="text" id="Doctorlastname" value={doctorLastname} onChange={(e)=>setDoctorLastname(e.target.value)}></input></td>
+            <td><input type="text" id="Doctorlastname" required value={doctorLastname} onChange={(e)=>setDoctorLastname(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Speciality :</td>
-            <td><input type="text" id="Speciality" value={speciality} onChange={(e)=>setSpeciality(e.target.value)}></input></td>
+            <td><input type="text" id="Speciality" required value={speciality} onChange={(e)=>setSpeciality(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Experience :</td>
-            <td><input type="number" placeholder="In years" id="Experience" value={experience} onChange={(e)=>setExperience(e.target.value)}></input></td>
+            <td><input type="number" placeholder="In years" required id="Experience" value={experience} onChange={(e)=>setExperience(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Date of obtaining medical license :</td>
-            <td><input type="date" id="DateofLicenseobtained" value={dateofLicenseobtained} onChange={(e)=>setDateofLicenseobtained(e.target.value)}></input></td>
+            <td><input type="date" id="DateofLicenseobtained" required value={dateofLicenseobtained} onChange={(e)=>setDateofLicenseobtained(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Country of license issued :</td>
-            <td><input type="text" id="CountryofLicenseobtained" value={countryofLicenseobtained} onChange={(e)=>setCountryofLicenseobtained(e.target.value)}></input></td>
+            <td><input type="text" id="CountryofLicenseobtained" required value={countryofLicenseobtained} onChange={(e)=>setCountryofLicenseobtained(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>License number :</td>
-            <td><input type="number" id="Licensenumber" value={licensenumber} onChange={(e)=>setLicensenumber(e.target.value)}></input></td>
+            <td><input type="number" id="Licensenumber" required value={licensenumber} onChange={(e)=>setLicensenumber(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Current Workplace :</td>
-            <td><input type="text" id="CurrentWorkplace" value={currentWorkplace} onChange={(e)=>setCurrentWorkplace(e.target.value)}></input></td>
+            <td><input type="text" id="CurrentWorkplace" required value={currentWorkplace} onChange={(e)=>setCurrentWorkplace(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Phone number :</td>
-            <td><input type="number" id="Phonenumber" value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}></input></td>
+            <td><input type="number" id="Phonenumber" required value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Email address :</td>
-            <td><input type="email" id="Email" value={email} onChange={(e)=>setEmail(e.target.value)}></input></td>
+            <td><input type="email" id="Email" value={email} required onChange={(e)=>setEmail(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Create Password :</td>
-            <td><input type="text" id="Password" value={password} onChange={(e)=>setPassword(e.target.value)}></input></td>
+            <td><input type="text" id="Password" value={password} required onChange={(e)=>setPassword(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Confirm Password :</td>
-            <td><input type="text" id="ConfirmPassword" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
+            <td><input type="text" id="ConfirmPassword" required value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
           </tr>
         </table>
-        <buttun type='button' className="DRbtn" onClick={submit}>submit</buttun>
+        
+
+        <button type='button' className="DRbtn" onClick={submit}>submit</button>
+        {error && <p style={{ color: "royalblue" }}>{errorMessage}</p>}
+
         </div>
       </div>
     <FooterPage></FooterPage>
