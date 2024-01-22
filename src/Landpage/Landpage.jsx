@@ -10,7 +10,7 @@ export default function Landpage() {
       <LandNav></LandNav>
       <div className="landpage-container">
         <div className="banner-card">
-          <img className="bannerimage" src="https://source.unsplash.com/1600x1000/?treatment "></img>
+          <img className="bannerimage" src="https://source.unsplash.com/1600x1000/?hospital"></img>
           <div className="banner-text">
             <p>The best medical services</p>
             <p>We have most dedicated team to maintain your health.</p>

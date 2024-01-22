@@ -5,8 +5,8 @@ import FooterPage from "./Landpage/FooterPage.jsx";
 import axios from 'axios';
 import { Form, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
-import { setPatientslot } from "./AuthState.jsx";
 
+ 
 
 function OnlineService() {
 
@@ -105,92 +105,6 @@ function OnlineService() {
     }
   }
 
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const nodemailer = require('nodemailer');
-
-// const app = express();
-// const port = 3000;
-
-// app.use(bodyParser.json());
-
-// app.post('/send-email', async (req, res) => {
-//   const userEmail = req.body.email;
-
-//   // Replace these with your actual SMTP server details
-//   const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: 'your-email@gmail.com', // Replace with your Gmail email
-//       pass: 'your-password',       // Replace with your Gmail password
-//     },
-//   });
-
-//   const mailOptions = {
-//     from: 'your-email@gmail.com',  // Replace with your Gmail email
-//     to: userEmail,                 // Use the user's email obtained from the request
-//     subject: 'Test Email',
-//     text: 'Your slot is confirmed',
-//   };
-
-//   try {
-//     const info = await transporter.sendMail(mailOptions);
-//     console.log('Email sent:', info.response);
-//     res.json({ message: 'Email sent successfully' });
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.status(500).json({ error: 'Failed to send email' });
-//   }
-// });
-
-// app.listen(port, () => {
-//   console.log(`Server is running on http://localhost:${port}`);
-// });
-
-  
-  //   const submithandler=(event)=>{
-  //     event.preventDefault();
-  //   const config ={        
-  //       Host : "smtp.elasticemail.com",
-  //       Username : "balubalaramireddyk@gmail.com",
-  //       Password : "p64E224C6D4C3C7552042781912DEC45EA19F",
-  //       port : "2525",
-  //       To : email,
-  //       From : "balubalaramireddyk@gamil.com",
-  //       Subject : "Slot Conformation",
-  //       Body : "Dear"+patientname+"Your slot for" +typeofservices+"is confirmed",
-  //   }; 
-  //   if(window.email){
-  //     window.email.send(config)
-  //   }
-  // }
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-
-  //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
-  //     .then((result) => {
-  //         console.log(result.text);
-  //     }, (error) => {
-  //         console.log(error.text);
-  //     });
-  // };
-  // const handleSendEmail = async() => {
-  //   try {
-  //     const response = await axios.post("http://localhost:9082/api/send-email", {
-  //       eamil : email,
-  //       patientname : patientname,
-  //       typeofservices : typeofservices,
-  //       bookingdate : bookingdate,
-  //       slottime : slottime,          
-      
-  //     });
-
-  //     console.log(response.data); // Log the response if needed
-  //   } catch (error) {
-  //     console.error("Error sending email:", error);
-  //   }
-  // };
-
   
   function onclick(){
     submit();
@@ -265,7 +179,6 @@ function OnlineService() {
               <option>10:00am </option>
               <option>11:00am</option>
               <option>12:00pm</option>
-
             </select></td>
           </tr>
 

@@ -4,6 +4,7 @@ import LandNav from "./Landpage/LandNav.jsx";
 import FooterPage from "./Landpage/FooterPage.jsx";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
+
 import { Link } from "react-router-dom";
 
 
@@ -110,7 +111,7 @@ export default function MedicalServices() {
           </div>
         </div>
         <hr></hr>
-        
+
         <div className="d-flex flex-row">
           <div className="articlecontent">
             <h1>Read top articles from health experts</h1>
@@ -118,29 +119,55 @@ export default function MedicalServices() {
           </div>
           <div className="d-flex flex-row">
             <div className="articleacard">
-            <a href="https://www.practo.com/healthfeed/12-coronavirus-myths-and-facts-that-you-should-be-aware-of-40556/post">
+              <a href="https://www.practo.com/healthfeed/12-coronavirus-myths-and-facts-that-you-should-be-aware-of-40556/post">
 
-              <img className="articleimg" src="coronovirus.jpg"></img>
-            </a>
+                <img className="articleimg" src="coronovirus.jpg"></img>
+              </a>
               <p>CORONOVIRUS</p>
               <h3>Know the facts about the corono virus</h3>
             </div>
-            
-            <div className="articlecard">
-            <a href="https://www.practo.com/healthfeed/eating-right-to-build-immunity-against-cold-and-viral-infections-40908/post">
 
-              <img className="articleimg" src="vitamins.jpg"></img>
+            <div className="articlecard">
+              <a href="https://www.practo.com/healthfeed/eating-right-to-build-immunity-against-cold-and-viral-infections-40908/post">
+
+                <img className="articleimg" src="vitamins.jpg"></img>
               </a>
               <p>NUTRIRION</p>
-              <h3>Boost your immunity</h3>
+              <h3>Boost your immunity with good nutrition</h3>
             </div>
-          
+
           </div>
-        </div>
+          
         
         <hr></hr>
 
+
       </div>
+      <div id="carouselExampleFade" class="MScorousel carousel slide carousel-fade">
+            <div class="carousel-inner">
+              <div class="carousel-item active MScorouselcard">
+                <h1>What our users have to say.</h1>
+                <p>Very helpful. Far easier than doing the slot booking physically</p>
+              </div>
+              <div class="carousel-item  MScorouselcard">
+                <h1>What our users have to say.</h1>
+                <p>Very Good app easy to access and services provided are easy to access and very effective</p>
+              </div>
+              <div class="carousel-item  MScorouselcard">
+                <h1>What our users have to say</h1>
+                <p></p>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
       <FooterPage></FooterPage>
     </>
   );

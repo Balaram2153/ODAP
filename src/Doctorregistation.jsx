@@ -64,7 +64,7 @@ export default function Doctorregistration(){
         throw new Error("Enter valid Phone number")
       if(emaildigit.test(email) || emailspecialchars.test(email) || !email.endsWith(emailend))
         throw new Error("Enter valid Email")
-      if(password != confirmPassword)
+      if(password !== confirmPassword)
         throw new Error("The Password and Confirmpassword should match")
       
       const response =await axios.post('http://localhost:9082/api/DRData' ,data)
@@ -143,11 +143,11 @@ export default function Doctorregistration(){
           </tr>
           <tr>
             <td>Create Password :</td>
-            <td><input type="text" id="Password" value={password} required onChange={(e)=>setPassword(e.target.value)}></input></td>
+            <td><input type="password" id="Password" value={password} required onChange={(e)=>setPassword(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Confirm Password :</td>
-            <td><input type="text" id="ConfirmPassword" required value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
+            <td><input type="password" id="ConfirmPassword" required value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
           </tr>
         </table>
         
