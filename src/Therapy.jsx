@@ -5,6 +5,7 @@ import FooterPage from "./Landpage/FooterPage.jsx";
 import axios from 'axios';
 import { Form, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
+import { setslotdetails } from "./datastate.js";
 
  
 
@@ -88,6 +89,7 @@ function OnlineService() {
       setMobileNumber('');
       alert("please select ok to make payment to book your slot");
       console.log(response);
+      setslotdetails(response);
       navigate('Payment')
       const pdf = new jsPDF();
       pdf.text("slot booking reciept", 80, 20);
@@ -129,6 +131,7 @@ function OnlineService() {
     <>
 
       <LandNav></LandNav>
+      <div className="body">
       <h1>Book Your Slot</h1>
 
       <div className="Therapy-slot-container d-flex flex-column">
@@ -242,6 +245,7 @@ function OnlineService() {
 
 
       <FooterPage></FooterPage>
+      </div>
 
     </>
   )

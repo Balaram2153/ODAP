@@ -24,6 +24,46 @@ export default function MedicalServices() {
           </div>
           <div className="MDfirstcard-img col-xl-4"><img src="animateddoctor.jpg"></img></div>
         </div>
+        
+        <div className="d-flex flex-row helpnumber">
+          <div><h1>Need help booking your slot :</h1>
+            <p>Our team is here to help you.</p></div>
+            <div><p>+91 9909090989</p></div>
+            
+          </div>
+          
+          
+        <div>
+          <h3 className="heading">Top booked Medical services.</h3>
+          <div className="d-flex flex-row justify-content-spacearound">
+            <div className="topservicescard">
+              <p>Therapy</p>
+              <p>Book a therapy session with out best Therapists</p>
+              <p>rupees:400/-</p>
+            </div>
+            <div className="topservicescard">
+              <p>Blood transfusion</p>
+              <p>Book a blood transfusion session today</p>
+              <p>rupees:600/-</p>
+            </div>
+            <div className="topservicescard">
+              <p>Dialysis</p>
+              <p>Book a dialysis session today. </p>
+              <p>rupees:500/-</p>
+            </div>
+            <div className="topservicescard">
+              <p>Physiotherapy</p>
+              <p>Book a physiotheray session.</p>
+              <p>rupees:400/-</p>              
+            </div>
+            <div className="topservicescard">
+              <p>Day care</p>
+              <p>We are introducing our new service form tomorrow</p>
+              <p>rupees:---</p>
+            </div>
+          </div>
+        </div>
+        
         <div className="row services-section">
           <div className="col-sm-12 col-md-2 col-xl-2 card">
             <img className="therapyimage" alt="" src="therapy.jpg" />
@@ -32,8 +72,6 @@ export default function MedicalServices() {
               <Link to="/Therapy"><button className="msbtn">Bookslot</button></Link>
             </div>
           </div>
-
-
           <div className="col-sm-12 col-md-2 col-xl-2 card">
             <img className="therapyimage" src="dialysis.jpg" alt="" />
             <div className="card-bottom">
@@ -124,7 +162,7 @@ export default function MedicalServices() {
                 <img className="articleimg" src="coronovirus.jpg"></img>
               </a>
               <p>CORONOVIRUS</p>
-              <h3>Know the facts about the corono virus</h3>
+              <h3 className="heading">Know the facts about the corono virus</h3>
             </div>
 
             <div className="articlecard">
@@ -133,7 +171,7 @@ export default function MedicalServices() {
                 <img className="articleimg" src="vitamins.jpg"></img>
               </a>
               <p>NUTRIRION</p>
-              <h3>Boost your immunity with good nutrition</h3>
+              <h3 className="heading">Boost your immunity with good nutrition</h3>
             </div>
 
           </div>

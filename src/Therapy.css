@@ -5,6 +5,9 @@ table{
     text-align: center;
     
 }
+.body{
+    background-image: url("");
+}
 .Therapy-slot-container{
     margin: 10px;
     padding: 8px;
