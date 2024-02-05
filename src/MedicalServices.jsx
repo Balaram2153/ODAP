@@ -17,12 +17,12 @@ export default function MedicalServices() {
 
       <div className="container-fluid d-flex flex-column">
         <div className="row MDfirstcard">
-          <div className="MDfirstcard-cont col-xl-6">
+          <div className="MDfirstcard-cont col-md-6">
             <h1>Online Medical Services</h1>
             <p>book your slot today</p>
-            <button className="Mdfirstcardbtn">Book Slot</button>
+            <Link to="/Therapy"><button className="msbtn">Bookslot</button></Link>
           </div>
-          <div className="MDfirstcard-img col-xl-4"><img src="animateddoctor.jpg"></img></div>
+          <div className="MDfirstcard-img col-md-3 "><img src="animateddoctor.jpg"></img></div>
         </div>
         
         <div className="d-flex flex-row helpnumber">
@@ -33,30 +33,30 @@ export default function MedicalServices() {
           </div>
           
           
-        <div>
+          <div>
           <h3 className="heading">Top booked Medical services.</h3>
           <div className="d-flex flex-row justify-content-spacearound">
-            <div className="topservicescard">
+            <div className="col-md-5 col-xl-2 topservicescard">
               <p>Therapy</p>
               <p>Book a therapy session with out best Therapists</p>
               <p>rupees:400/-</p>
             </div>
-            <div className="topservicescard">
+            <div className="topservicescard col-md-5 col-xl-2 ">
               <p>Blood transfusion</p>
               <p>Book a blood transfusion session today</p>
               <p>rupees:600/-</p>
             </div>
-            <div className="topservicescard">
+            <div className="col-md-5 col-xl-2 topservicescard">
               <p>Dialysis</p>
               <p>Book a dialysis session today. </p>
               <p>rupees:500/-</p>
             </div>
-            <div className="topservicescard">
+            <div className="topservicescard col-md-5 col-xl-2 ">
               <p>Physiotherapy</p>
               <p>Book a physiotheray session.</p>
               <p>rupees:400/-</p>              
             </div>
-            <div className="topservicescard">
+            <div className="topservicescard col-md-5 col-xl-2 ">
               <p>Day care</p>
               <p>We are introducing our new service form tomorrow</p>
               <p>rupees:---</p>

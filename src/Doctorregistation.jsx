@@ -3,23 +3,33 @@ import './Doctorregistration.css'
 import LandNav from "./Landpage/LandNav";
 import FooterPage from "./Landpage/FooterPage";
 import axios from "axios";
+import { useLayoutEffect,useNavigate } from "react-router-dom";
 
 export default function Doctorregistration(){
+  
+//   useLayoutEffect(() => {
+//     window.scrollTo(0, 0)
+// });  
   
   const[doctorFirstname, setDoctorFirstname] = useState('');
   const[doctorLastname, setDoctorLastname] = useState('');
   const[speciality, setSpeciality] = useState('');
   const[experience, setExperience] = useState('');
-  const[dateofLicenseobtained, setDateofLicenseobtained] = useState('');
-  const[countryofLicenseobtained, setCountryofLicenseobtained] = useState('');
-  const[licensenumber, setLicensenumber] = useState('');
-  const[currentWorkplace, setCurrentWorkplace] = useState('');
+  const[degree, setDegree] = useState('');
+  const[currentworkplace, setCurrentworkplace] = useState('');
+  const[address1, setAddress1] = useState('');
+  const[otherworkplace, setOtherworkplace] = useState('');
+  const[address2, setAddress2] = useState('');
   const[phonenumber, setPhonenumber] = useState('');
   const[email, setEmail] = useState('');
+  const[registrationnumber, setRegistrationnumber] = useState('');
+  const[registrationcouncil, setRegistrationcouncil] = useState('');
+  const[registrationyear, setRegistrationyear] = useState('');
   const[password, setPassword] = useState('');
   const[confirmPassword, setConfirmPassword] = useState('');
   const[errorMessage, setErrorMessage] = useState('');
   const[error,setError] = useState('');
+  const navigate = useNavigate('');
   
   const submit = async()=>{
     
@@ -27,12 +37,16 @@ export default function Doctorregistration(){
       doctorFirstname,
       doctorLastname,
       speciality,
-      experience, 
-      dateofLicenseobtained,
-      countryofLicenseobtained,
-      licensenumber,
-      currentWorkplace,
+      degree,
+      experience,      
+      currentworkplace,
+      address1,
+      otherworkplace,
+      address2,
       phonenumber,
+      registrationnumber,
+      registrationcouncil,
+      registrationyear,
       email,
       password,
       confirmPassword,
@@ -42,6 +56,7 @@ export default function Doctorregistration(){
       const digits = /[0-9]/;
       const emaildigit = /^[0-9]/;
       const alphabets = /[a-z]/;
+      const passwordtest = /[0123456789@#qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFAZXCVBNM]/;
       const specialchars = /[!@#$%^&*()_+|}{:"?><}]/;
       const emailspecialchars = /[!#$%^&*()_+|}{":?><}]/;
       const emailend = /[@gamil.com | @Yahoo.com]/;
@@ -54,16 +69,14 @@ export default function Doctorregistration(){
         throw new Error("Enter valid Speciality");
       if(experience.length >2)
         throw new Error("Enter valid Experience");
-      if(digits.test(countryofLicenseobtained) || specialchars.test(countryofLicenseobtained))
-        throw new Error("Enter Valid Country");
-      if(alphabets.test(licensenumber) || specialchars.test(licensenumber))
-        throw new Error("Enter valid license number");
-      if(digits.test(currentWorkplace) || specialchars.test(currentWorkplace))
+      if(digits.test(currentworkplace) || specialchars.test(currentworkplace))
         throw new Error("Enter valid Work place");
       if(alphabets.test(phonenumber) || specialchars.test(phonenumber) || phonenumber.length !== 10)
         throw new Error("Enter valid Phone number")
       if(emaildigit.test(email) || emailspecialchars.test(email) || !email.endsWith(emailend))
         throw new Error("Enter valid Email")
+      if(!password.test(passwordtest) ||password.length >8)
+        throw new error("password must contain 8 characters");
       if(password !== confirmPassword)
         throw new Error("The Password and Confirmpassword should match")
       
@@ -72,82 +85,148 @@ export default function Doctorregistration(){
       setDoctorLastname('');
       setSpeciality('');
       setExperience('');
-      setDateofLicenseobtained('');
-      setCountryofLicenseobtained('');
-      setLicensenumber('');
-      setCurrentWorkplace('');
+      setDegree('');
+      setCurrentworkplace('');
+      setAddress1('');
+      setOtherworkplace('');
+      setAddress2('');
       setPhonenumber('');
+      setRegistrationnumber('');
+      setRegistrationcouncil('');
+      setRegistrationyear('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
       alert("Doctor registration successful");
       console.log(response);
+      navigate('doctorlogin')
       
     }
     catch(e){
       setError(true);
       setErrorMessage(e.message);
-      }
-    
+      }    
   }
+
   
   return(   
    <>
     <LandNav></LandNav>
+    <div className="DRbg">
+    
+      <h4>Please Register Here.</h4>
+
       <div className="DRcontainer d-flex flex-row">
-        <div className="DRcard">
+        {/* <div className="DRcard">
           <img className="DRimage" src="doctorregister.jpg"></img>
           <p>Please fill in the details to register yourself.</p>
-        </div>
+        </div> */}
         <div>
-        <table className="Doctable">
+        <table className="Doctable1">
           <tr>
-            <td>Doctor First Name :</td>
+            <td>Doctor FirstName :</td>
             <td><input type="text" id="Doctorfirstname" required value={doctorFirstname} onChange={(e)=>setDoctorFirstname(e.target.value)}></input></td>
           </tr>
           <tr>
-            <td>Doctor Last Name :</td>
+            <td>Doctor LastName :</td>
             <td><input type="text" id="Doctorlastname" required value={doctorLastname} onChange={(e)=>setDoctorLastname(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Speciality :</td>
-            <td><input type="text" id="Speciality" required value={speciality} onChange={(e)=>setSpeciality(e.target.value)}></input></td>
+            <td><select id='Speciality' class="form-select form-select-sm" value={speciality} onChange={(e) => setSpeciality(e.target.value)} aria-label=".form-select-sm example" >
+              <option selected>Specializaton</option>
+              <option>Cardilogy</option>
+              <option>Gastroenterology</option>
+              <option>Dermatology</option>
+              <option>Endocrinologists</option>
+              <option>Neurology</option>
+              <option>Oncologist</option>
+              <option>Ophthalmology</option>
+              <option>Hematology</option>
+              <option>Nephrologist</option>
+              <option>Allergist</option>
+              <option>Obstetrics and Gynecology</option>
+              <option>Dental</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td>Degree :</td>
+            <td><input type="text" id="Degree" required value={degree} onChange={(e)=>setDegree(e.target.value)}></input></td>
           </tr>
           <tr>
             <td>Experience :</td>
             <td><input type="number" placeholder="In years" required id="Experience" value={experience} onChange={(e)=>setExperience(e.target.value)}></input></td>
           </tr>
           <tr>
-            <td>Date of obtaining medical license :</td>
-            <td><input type="date" id="DateofLicenseobtained" required value={dateofLicenseobtained} onChange={(e)=>setDateofLicenseobtained(e.target.value)}></input></td>
+            <td>Current Workplace:</td>
+            <td><select id='currentworkplace' class="form-select form-select-sm" value={currentworkplace} onChange={(e) => setCurrentworkplace(e.target.value)} aria-label=".form-select-sm example" >
+              <option selected>Hospital name</option>
+              <option>Care</option>
+              <option>Yashoda</option>
+              <option>Medicover</option>
+              <option>Apollo</option>
+            </select></td>
           </tr>
           <tr>
-            <td>Country of license issued :</td>
-            <td><input type="text" id="CountryofLicenseobtained" required value={countryofLicenseobtained} onChange={(e)=>setCountryofLicenseobtained(e.target.value)}></input></td>
+            <td>Address1 :</td>
+            <td><input type="text" id="Address1" required value={address1} onChange={(e)=>setAddress1(e.target.value)}></input></td>
           </tr>
           <tr>
-            <td>License number :</td>
-            <td><input type="number" id="Licensenumber" required value={licensenumber} onChange={(e)=>setLicensenumber(e.target.value)}></input></td>
+            <td>Otherworkplace :</td>
+            <td><select id='otherworkplace' class="form-select form-select-sm" value={otherworkplace} onChange={(e) => setOtherworkplace(e.target.value)} aria-label=".form-select-sm example" >
+              <option selected>Hospital name</option>
+              <option>Care</option>
+              <option>Yashoda</option>
+              <option>Medicover</option>
+              <option>Apollo</option>
+            </select></td>
           </tr>
           <tr>
-            <td>Current Workplace :</td>
-            <td><input type="text" id="CurrentWorkplace" required value={currentWorkplace} onChange={(e)=>setCurrentWorkplace(e.target.value)}></input></td>
+            <td>Address2 :</td>
+            <td><input type="text" id="Address2" required value={otherworkplace} onChange={(e)=>setOtherworkplace(e.target.value)}></input></td>
           </tr>
+          </table>
+          </div>
+          <div className="Doctable2">
+          <table>
           <tr>
-            <td>Phone number :</td>
+            <td>Mobilenumber:</td>
             <td><input type="number" id="Phonenumber" required value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}></input></td>
           </tr>
           <tr>
-            <td>Email address :</td>
+            <td>Email :</td>
             <td><input type="email" id="Email" value={email} required onChange={(e)=>setEmail(e.target.value)}></input></td>
           </tr>
           <tr>
-            <td>Create Password :</td>
-            <td><input type="password" id="Password" value={password} required onChange={(e)=>setPassword(e.target.value)}></input></td>
+            <td>Registered number :</td>
+            <td><input type="number" id="Registerednumber" required value={registrationnumber} onChange={(e)=>setRegistrationnumber(e.target.value)} placeholder="License number"></input></td>
           </tr>
           <tr>
-            <td>Confirm Password :</td>
-            <td><input type="password" id="ConfirmPassword" required value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input></td>
+            <td>Registered council:</td>
+            <td><select id='Registeredcouncil' class="form-select form-select-sm" value={registrationcouncil} onChange={(e) => setRegistrationcouncil(e.target.value)} aria-label=".form-select-sm example" >
+              <option selected></option>
+              <option>Andhra pradesh Medical Council</option>
+              <option>Tamilnadu Medical Council</option>
+              <option> Delhi Medical Council</option>
+              <option>Maharastra Medical Council</option>
+              <option>Karnataka Dental Council</option>
+              <option>Medical Council of India</option>
+            </select></td>
+          </tr>
+          <tr>
+          <p style={{color:"red"}}>License obtained from which council</p>
+          </tr>
+          <tr>
+            <td>Registered Year:</td>
+            <td><input type="number" id="Registeredyear" required value={registrationyear} onChange={(e)=>setRegistrationyear(e.target.value)}></input></td>
+          </tr>
+          <tr>
+            <td>Create Password:</td>
+            <td><input type="password" id="Password" value={password} required onChange={(e)=>setPassword(e.target.value)}></input></td>
+          </tr>
+          <tr> 
+            <td>Confirm Password:</td>
+            <td><input type="password" id="ConfirmPassword" required value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="should match the entered password"></input></td>
           </tr>
         </table>
         
@@ -156,6 +235,7 @@ export default function Doctorregistration(){
         {error && <p style={{ color: "royalblue" }}>{errorMessage}</p>}
 
         </div>
+      </div>
       </div>
     <FooterPage></FooterPage>
     </>

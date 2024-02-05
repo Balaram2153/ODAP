@@ -101,7 +101,7 @@
 .MDfirstcard {
   margin: 25px;
   border-radius: 6px;
-  background-image: linear-gradient(to right, rgb(87, 50, 219), purple);
+  background-image: linear-gradient(to right, rgb(80, 87, 128), rgb(11, 45, 148));
   height: 300px;
   padding-top: 80px;
 }
@@ -111,7 +111,7 @@
   padding: 6px;
   text-align: center;
   color: white;
-}
+} 
 
 .MDfirstcard-img {
   margin-left: 200px;

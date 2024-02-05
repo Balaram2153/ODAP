@@ -3,9 +3,9 @@ import './Therapy.css';
 import LandNav from "./Landpage/LandNav.jsx";
 import FooterPage from "./Landpage/FooterPage.jsx";
 import axios from 'axios';
-import { Form, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
-import { setslotdetails } from "./datastate.js";
+import { setPatientslot } from "./Landpage/Authstate.js";
 
  
 
@@ -18,15 +18,23 @@ function OnlineService() {
   const [hospitalname, setHospitalName] = useState('');
   const [slottime, setSlottime] = useState('');
   const [procedures, setProcedures] = useState('');
+  const [paymentmode, setPaymentmode] = useState('');
   const [amount, setAmount] = useState('1000');
   const [email, setEmail] = useState('');
   const [mobilenumber, setMobileNumber] = useState('');
+  const [attendee, setAttendee] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate('');
   
   
-
+  // function paymode(){
+  //   selectedvalue = document.getElementById("paymentmode")
+    
+  //   if (selectedvalue == "insurance"){
+      
+  //   }
+  // }
 
   const submit = async () => {
 
@@ -39,9 +47,11 @@ function OnlineService() {
       hospitalname,
       slottime,
       procedures,
+      paymentmode,
       amount,
       email,
       mobilenumber,
+      attendee,
 
     };
     try {
@@ -76,6 +86,8 @@ function OnlineService() {
       if (alphabets.test(mobilenumber) || mobilenumber.length !== 10 || !startswith.test(mobilenumber))
         throw new Error("Mobilenumber should not contain alphabets and must contain 10 numbers")
 
+        
+
       const response = await axios.post('http://localhost:9082/api/Msdata', Data);
       setPatientName('');
       setReferalDoctorName('');
@@ -84,17 +96,23 @@ function OnlineService() {
       setHospitalName('');
       setSlottime('');
       setProcedures('');
+      setPaymentmode('');
       setAmount('');
       setEmail('');
       setMobileNumber('');
+      setAttendee('');
       alert("please select ok to make payment to book your slot");
       console.log(response);
-      setslotdetails(response);
+      setPatientslot(response);
       navigate('Payment')
+      
       const pdf = new jsPDF();
       pdf.text("slot booking reciept", 80, 20);
-      pdf.text('username :' + patientname, 80, 30);
-      pdf.text('lottime:'+slottime,80,40);
+      pdf.text("Thank you "+patientname+" for booking an appointment with us.")
+      pdf.text("Here are your appointment details ", 80, 30);
+      pdf.text("Type of appointment :"+typeofservices,80,40);
+      pdf.text("Appointmenttime:"+slottime,80,50);
+      pdf.text("Note : Be at the hospital atleast 10 minutes ahead of your appointment time",80,60);
       pdf.save('slot reciept.pdf');
       
       setTimeout(() => {
@@ -136,25 +154,8 @@ function OnlineService() {
 
       <div className="Therapy-slot-container d-flex flex-column">
         <table>
-
-          <tr>
-            <td text-primary fw-bold>Patient Name :</td>
-            <td><input type='text' className="form-control" id='Patientname' value={patientname} onChange={(e) => setPatientName(e.target.value)} placeholder='enter patientname' required /></td>
-          </tr>
-
-
-          <tr>
-            <td text-primary fw-bold>ReferalDoctorname:</td>
-            <td><input type='text' className="form-control" id='ReferalDoctorname' value={referaldoctorname} onChange={(e) => setReferalDoctorName(e.target.value)} placeholder='enter doctorname' required /></td>
-          </tr>
-
-          <tr>
-            <td for='date' >Date :</td>
-            <td>            <input type='date' className="form-control" id='Bookingdate' value={bookingdate} onChange={(e) => setBookingdate(e.target.value)} placeholder='enter mobile number' required />
-            </td>
-          </tr>
-
-          <tr>
+          
+        <tr>
             <td >Typeofservices :</td>
             <td><select id='Typeofservices' class="form-select form-select-sm" value={typeofservices} onChange={(e) => setTypeofservices(e.target.value)} aria-label=".form-select-sm example" >
               <option selected>services</option>
@@ -164,7 +165,6 @@ function OnlineService() {
 
             </select></td>
           </tr>
-
           <tr>
             <td>Hospitalname:</td>
             <td><select id='hospitalname' class="form-select form-select-sm" value={hospitalname} onChange={(e) => setHospitalName(e.target.value)} aria-label=".form-select-sm example" >
@@ -174,7 +174,19 @@ function OnlineService() {
               <option>Yashoda</option>
             </select></td>
           </tr>
-
+          <tr>
+            <td text-primary fw-bold>Patient Name :</td>
+            <td><input type='text' className="form-control" id='Patientname' value={patientname} onChange={(e) => setPatientName(e.target.value)} placeholder='enter patientname' required /></td>
+          </tr>
+          <tr>
+            <td text-primary fw-bold>ReferalDoctorname:</td>
+            <td><input type='text' className="form-control" id='ReferalDoctorname' value={referaldoctorname} onChange={(e) => setReferalDoctorName(e.target.value)} placeholder='enter doctorname' required /></td>
+          </tr>
+          <tr>
+            <td for='date' >Date :</td>
+            <td>            <input type='date' className="form-control" id='Bookingdate' value={bookingdate} onChange={(e) => setBookingdate(e.target.value)} placeholder='enter mobile number' required />
+            </td>
+          </tr>
           <tr>
             <td>slot :</td>
             <td>  <select id='slot' class="form-select form-select-sm" value={slottime} onChange={(e) => setSlottime(e.target.value)} aria-label=".form-select-sm example" >
@@ -189,15 +201,15 @@ function OnlineService() {
             <td>procedures :</td>
             <td><select id='procedures' class="form-select form-select-sm" value={procedures} onChange={(e) => setProcedures(e.target.value)} aria-label=".form-select-sm example" >
               <option ></option>
-              <option>side 1</option>
-              <option>side 2</option>
-              <option>side 3</option>
-              <option>side 4</option>
+              <option>procedure 1</option>
+              <option>procedure 2</option>
+              <option>procedure 3</option>
+              <option>procedure 4</option>
             </select></td>
           </tr>
           <tr>
             <td>Payment mode:</td>
-            <td><select id="Paymentmode" onChange={showForm} className="form-select form-select-sm">
+            <td><select id="Paymentmode" value={paymentmode} onChange={(e)=>setPaymentmode(e.target.value)}  className="form-select form-select-sm">
               <option></option>
               <option>Cash</option>
               <option>Online</option>
@@ -212,17 +224,9 @@ function OnlineService() {
               </select>
             </div>
           </tr>
-          <div className="Paymentoptions" id="Paymentoptions">
-            <p>please select the insurance you are willing to provide</p>
-            <select>
-              <option>Government insurance</option>
-              <option>LIC</option>
-              <option>Private Insurances</option>
-            </select>
-          </div>
           <tr>
             <td>Amount :</td>
-            <td><input type='text' className="form-control" id='inputMedicalInformation' value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='enter medical information' />
+            <td><input type='text' className="form-control" id='inputMedicalInformation' value={amount} onChange={(e) => setAmount(e.target.value)}/>
             </td>
           </tr>
 
@@ -238,14 +242,20 @@ function OnlineService() {
             <td><input type='tel' className="form-control" id='inputMobile' value={mobilenumber} onChange={(e) => setMobileNumber(e.target.value)} placeholder='enter mobile number' required />
             </td>
           </tr>
+          <tr>
+            <td>Attendee Name :</td>
+            <td><input type='text' className="form-control" id='Attendee' value={attendee} onChange={(e) => setAttendee(e.target.value)}  required />
+            </td>
+          </tr>
         </table>
         {error && <p style={{ color: "red" }}>{errorMessage}</p>}
         <button type="button" className="therapy-btn" onClick={onclick}>Book slot</button>
       </div>
 
 
-      <FooterPage></FooterPage>
       </div>
+      <FooterPage></FooterPage>
+
 
     </>
   )

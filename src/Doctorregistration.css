@@ -6,9 +6,21 @@ td{
     padding: 10px;
     color: white;
 }
-.doctable tr{
+
+.Doctable1 tr{
     padding: 10px;
     
+}
+td{
+    color: #4169e1;
+    font-weight: bold;
+    margin-left: 0px;
+}
+.Doctable1  input{
+    color: black;
+}
+.Doctable2 input{
+    color: black;
 }
 .DRimage{
     border-radius: 50%;
@@ -30,12 +42,27 @@ td{
     margin-top: 10px;
     margin-right: 120px;
     border-radius: 6px;
-    background-color: darkslateblue;
-    height: 750px;
+    background-color: transparent;
+    height: 650px;
+    padding: 24px;
 }
 .DRbtn{
     border-radius: 12px;
     background-color: black;
     color: white;
     padding: 10px;
+}
+h4{
+    margin-left: 600px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px;
+    font-size: 50px;
+}
+.DRbg{
+    background-image: url("C:\Users\Admin\Desktop\ODAP1\ODAP\public\DRbg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
